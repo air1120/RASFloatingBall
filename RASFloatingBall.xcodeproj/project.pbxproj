@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E6E556821F89FDE00A4FA3A /* RASFloatingBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E556621F89FDE00A4FA3A /* RASFloatingBall.m */; };
 		8E99843021F85570007EBF95 /* AllFloatViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E99842F21F85570007EBF95 /* AllFloatViewManager.m */; };
 		C4863C721EB43D8300B0B4E2 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4863C711EB43D8300B0B4E2 /* DemoTableViewController.m */; };
 		C4863C751EB443B100B0B4E2 /* DemoBallTitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4863C741EB443B100B0B4E2 /* DemoBallTitleTableViewController.m */; };
 		C4863C811EB4626500B0B4E2 /* RASCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C4863C801EB4626500B0B4E2 /* RASCustomButton.m */; };
 		C4863C841EB4792600B0B4E2 /* DemoBallSpecifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4863C831EB4792600B0B4E2 /* DemoBallSpecifiedViewController.m */; };
 		C4863C871EB479B600B0B4E2 /* DemoBallSpecifiedTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4863C861EB479B600B0B4E2 /* DemoBallSpecifiedTwoViewController.m */; };
-		C48F9ADE1F3957DC00D8FB42 /* RASFloatingBall.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F9ADD1F3957DC00D8FB42 /* RASFloatingBall.m */; };
 		C4E87DD01EAB24520098F645 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E87DCF1EAB24520098F645 /* main.m */; };
 		C4E87DD31EAB24520098F645 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E87DD21EAB24520098F645 /* AppDelegate.m */; };
 		C4E87DD91EAB24520098F645 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E87DD71EAB24520098F645 /* Main.storyboard */; };
@@ -22,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E6E556621F89FDE00A4FA3A /* RASFloatingBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RASFloatingBall.m; sourceTree = "<group>"; };
+		8E6E556721F89FDE00A4FA3A /* RASFloatingBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RASFloatingBall.h; sourceTree = "<group>"; };
 		8E99842E21F85570007EBF95 /* AllFloatViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllFloatViewManager.h; sourceTree = "<group>"; };
 		8E99842F21F85570007EBF95 /* AllFloatViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AllFloatViewManager.m; sourceTree = "<group>"; };
 		C4863C701EB43D8300B0B4E2 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
@@ -34,8 +36,6 @@
 		C4863C831EB4792600B0B4E2 /* DemoBallSpecifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBallSpecifiedViewController.m; sourceTree = "<group>"; };
 		C4863C851EB479B600B0B4E2 /* DemoBallSpecifiedTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoBallSpecifiedTwoViewController.h; sourceTree = "<group>"; };
 		C4863C861EB479B600B0B4E2 /* DemoBallSpecifiedTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBallSpecifiedTwoViewController.m; sourceTree = "<group>"; };
-		C48F9ADC1F3957DC00D8FB42 /* RASFloatingBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RASFloatingBall.h; path = RASFloatingBall/RASFloatingBall.h; sourceTree = "<group>"; };
-		C48F9ADD1F3957DC00D8FB42 /* RASFloatingBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RASFloatingBall.m; path = RASFloatingBall/RASFloatingBall.m; sourceTree = "<group>"; };
 		C4E87DCB1EAB24520098F645 /* RASFloatingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RASFloatingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E87DCF1EAB24520098F645 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4E87DD11EAB24520098F645 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E6E556521F89FDE00A4FA3A /* RASFloatingBall */ = {
+			isa = PBXGroup;
+			children = (
+				8E6E556621F89FDE00A4FA3A /* RASFloatingBall.m */,
+				8E6E556721F89FDE00A4FA3A /* RASFloatingBall.h */,
+			);
+			path = RASFloatingBall;
+			sourceTree = "<group>";
+		};
 		C4E87DC21EAB24520098F645 = {
 			isa = PBXGroup;
 			children = (
@@ -76,9 +85,9 @@
 		C4E87DCD1EAB24520098F645 /* RASFloatingBall */ = {
 			isa = PBXGroup;
 			children = (
+				8E6E556521F89FDE00A4FA3A /* RASFloatingBall */,
 				C4863C7F1EB4626500B0B4E2 /* RASCustomButton.h */,
 				C4863C801EB4626500B0B4E2 /* RASCustomButton.m */,
-				C4E87DF21EAB381C0098F645 /* Resources */,
 				C4E87DD11EAB24520098F645 /* AppDelegate.h */,
 				C4E87DD21EAB24520098F645 /* AppDelegate.m */,
 				C4863C701EB43D8300B0B4E2 /* DemoTableViewController.h */,
@@ -106,15 +115,6 @@
 				C4E87DCF1EAB24520098F645 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C4E87DF21EAB381C0098F645 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C48F9ADC1F3957DC00D8FB42 /* RASFloatingBall.h */,
-				C48F9ADD1F3957DC00D8FB42 /* RASFloatingBall.m */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,9 +191,9 @@
 			files = (
 				C4863C721EB43D8300B0B4E2 /* DemoTableViewController.m in Sources */,
 				C4863C841EB4792600B0B4E2 /* DemoBallSpecifiedViewController.m in Sources */,
+				8E6E556821F89FDE00A4FA3A /* RASFloatingBall.m in Sources */,
 				C4863C811EB4626500B0B4E2 /* RASCustomButton.m in Sources */,
 				C4863C871EB479B600B0B4E2 /* DemoBallSpecifiedTwoViewController.m in Sources */,
-				C48F9ADE1F3957DC00D8FB42 /* RASFloatingBall.m in Sources */,
 				C4E87DD31EAB24520098F645 /* AppDelegate.m in Sources */,
 				C4863C751EB443B100B0B4E2 /* DemoBallTitleTableViewController.m in Sources */,
 				C4E87DD01EAB24520098F645 /* main.m in Sources */,
