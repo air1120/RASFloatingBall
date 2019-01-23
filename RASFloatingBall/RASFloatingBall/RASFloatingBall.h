@@ -118,11 +118,11 @@ typedef void(^RASFloatingBallClickHandler)(RASFloatingBall *floatingBall);
 /**
  点击 floatingBall 的 block 回调
  */
-@property (nonatomic,   copy) RASFloatingBallClickHandler clickHandler;
+@property (nonatomic,   copy,nullable) RASFloatingBallClickHandler clickHandler;
 
-@property (nonatomic,   copy) RASFloatingBallClickHandler panStartHandler;
+@property (nonatomic,   copy,nullable) RASFloatingBallClickHandler panStartHandler;
 
-@property (nonatomic,   copy) RASFloatingBallClickHandler backgroundViewClickHandler;
+@property (nonatomic,   copy,nullable) RASFloatingBallClickHandler backgroundViewClickHandler;
 
 // 文字颜色
 @property (nonatomic, strong) UIColor *textTypeTextColor;

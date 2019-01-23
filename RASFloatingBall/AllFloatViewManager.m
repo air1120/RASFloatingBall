@@ -8,6 +8,10 @@
 
 #import "AllFloatViewManager.h"
 #import "RASFloatingBall.h"
+@interface AllFloatViewManager()
++ (void)show:(UIView *)followView;
++ (void)hide;
+@end
 @implementation AllFloatViewManager
 static RASFloatingBall *floating;
 + (void)show:(UIView *)floatView{
