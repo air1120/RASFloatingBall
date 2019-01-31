@@ -44,6 +44,9 @@ static RASFloatingBall *floating;
             }
             
         };
+        floating.autoCloseEdgeStartHandler = ^(RASFloatingBall * _Nonnull floatingBall) {
+            floatView.hidden = YES;
+        };
         floating.panStartHandler = ^(RASFloatingBall * _Nonnull floatingBall) {
             //        [floatingBall hide];
             floatView.hidden = YES;

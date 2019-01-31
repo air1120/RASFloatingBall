@@ -127,6 +127,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     RASLog(@"RASFloatingBall dealloc");
     [RASFloatingBallManager shareManager].canRuntime = NO;
     [RASFloatingBallManager shareManager].superView = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -153,6 +154,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
         [self addGestureRecognizer:tapGesture];
         [self addGestureRecognizer:panGesture];
         [self configSpecifiedView:specifiedView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(autoCloseEdge) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     }
     return self;
 }
@@ -197,7 +199,6 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
 
 - (void)autoEdgeOffset {
     RASEdgeRetractConfig config = self.edgeRetractConfigHander ? self.edgeRetractConfigHander() : RASEdgeOffsetConfigMake(CGPointMake(self.bounds.size.width * 0.3, self.bounds.size.height * 0.3), 0.8);
-    
     [UIView animateWithDuration:0.5f animations:^{
         self.center = [self calculatePoisitionWithEndOffset:config.edgeRetractOffset];
         self.alpha = config.edgeRetractAlpha;
@@ -205,6 +206,9 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
 }
 
 - (CGPoint)calculatePoisitionWithEndOffset:(CGPoint)offset {
+    if (self.autoCloseEdgeStartHandler) {
+        self.autoCloseEdgeStartHandler(self);
+    }
     CGFloat ballHalfW   = self.bounds.size.width * 0.5;
     CGFloat ballHalfH   = self.bounds.size.height * 0.5;
     CGFloat parentViewW = self.parentView.bounds.size.width;
@@ -214,9 +218,15 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     if (RASFloatingBallEdgePolicyLeftRight == self.edgePolicy) {
         // 左右
         center.x = (center.x < self.parentView.bounds.size.width * 0.5) ? (ballHalfW - offset.x + self.effectiveEdgeInsets.left) : (parentViewW + offset.x - ballHalfW + self.effectiveEdgeInsets.right);
+        if (center.y < 0 || center.y > parentViewH) {
+            center.y = (center.y < self.parentView.bounds.size.height * 0.5) ? (ballHalfH - offset.y + self.effectiveEdgeInsets.top) : (parentViewH + offset.y - ballHalfH + self.effectiveEdgeInsets.bottom);
+        }
     }
     else if (RASFloatingBallEdgePolicyUpDown == self.edgePolicy) {
         center.y = (center.y < self.parentView.bounds.size.height * 0.5) ? (ballHalfH - offset.y + self.effectiveEdgeInsets.top) : (parentViewH + offset.y - ballHalfH + self.effectiveEdgeInsets.bottom);
+        if (center.x < 0 || center.x > parentViewW) {
+            center.x = (center.x < self.parentView.bounds.size.width * 0.5) ? (ballHalfW - offset.x + self.effectiveEdgeInsets.left) : (parentViewW + offset.x - ballHalfW + self.effectiveEdgeInsets.right);
+        }
     }
     else if (RASFloatingBallEdgePolicyAllEdge == self.edgePolicy) {
         if (center.y < minUpDownLimits) {
@@ -229,6 +239,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
             center.x = (center.x < self.parentView.bounds.size.width  * 0.5) ? (ballHalfW - offset.x + self.effectiveEdgeInsets.left) : (parentViewW + offset.x - ballHalfW + self.effectiveEdgeInsets.right);
         }
     }
+    
     return center;
 }
 
