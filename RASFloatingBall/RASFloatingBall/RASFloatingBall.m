@@ -19,8 +19,8 @@
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     for (int i=0; i<self.subviews.count; i++) {
         UIView *view = self.subviews[i];
-        if (CGRectContainsPoint(view.bounds,
-                                [view convertPoint:point fromView:self])&&![view isEqual:self.rootViewController.view]) {
+        //        &&!CGRectEqualToRect(view.frame,self.bounds)
+        if (CGRectContainsPoint(view.bounds,[view convertPoint:point fromView:self])&&![view isEqual:self.rootViewController.view]&&![view isKindOfClass:[NSClassFromString(@"UITransitionView") class]]) {
             return [super pointInside:point withEvent:event];
         }
     }
