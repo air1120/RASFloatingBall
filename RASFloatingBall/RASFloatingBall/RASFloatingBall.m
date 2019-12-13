@@ -17,6 +17,7 @@
 @implementation RASFloatingBallWindow
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    //悬浮按钮相关界面，当然是正常返回啦
     for (int i=0; i<self.subviews.count; i++) {
         UIView *view = self.subviews[i];
         //        &&!CGRectEqualToRect(view.frame,self.bounds)
@@ -24,6 +25,7 @@
             return [super pointInside:point withEvent:event];
         }
     }
+    //找到悬浮按钮控件
     __block RASFloatingBall *floatingBall = nil;
     [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[RASFloatingBall class]]) {
@@ -31,6 +33,7 @@
             *stop = YES;
         }
     }];
+    //非悬浮按钮界面位置，并且有相关回调，则触发
     if (floatingBall.backgroundViewClickHandler) {
         floatingBall.backgroundViewClickHandler(floatingBall);
         return [super pointInside:point withEvent:event];
