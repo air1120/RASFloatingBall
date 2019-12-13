@@ -8,6 +8,10 @@
 
 #import "AllFloatViewManager.h"
 #import "RASFloatingBall.h"
+@interface AllFloatViewManager()
++ (void)show:(UIView *)followView;
++ (void)hide;
+@end
 @implementation AllFloatViewManager
 static RASFloatingBall *floating;
 + (void)show:(UIView *)floatView{
@@ -39,6 +43,9 @@ static RASFloatingBall *floating;
                 floatingBall.backgroundViewClickHandler = NULL;
             }
             
+        };
+        floating.autoCloseEdgeStartHandler = ^(RASFloatingBall * _Nonnull floatingBall) {
+            floatView.hidden = YES;
         };
         floating.panStartHandler = ^(RASFloatingBall * _Nonnull floatingBall) {
             //        [floatingBall hide];

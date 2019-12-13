@@ -196,6 +196,7 @@
     if (!_floatView) {
         _floatView  = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
         _floatView.backgroundColor = [UIColor redColor];
+        
     }
     return _floatView;
 }
