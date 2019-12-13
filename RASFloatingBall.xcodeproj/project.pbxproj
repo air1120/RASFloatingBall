@@ -148,7 +148,7 @@
 				TargetAttributes = {
 					C4E87DCA1EAB24520098F645 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = C6RYWRBCPS;
+						DevelopmentTeam = 66N6XR8J74;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -158,6 +158,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -320,12 +321,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = C6RYWRBCPS;
+				DEVELOPMENT_TEAM = 66N6XR8J74;
 				INFOPLIST_FILE = RASFloatingBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chengpeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = rs_test_dev;
+				PROVISIONING_PROFILE_SPECIFIER = tongyong13;
 			};
 			name = Debug;
 		};
@@ -334,12 +335,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 66N6XR8J74;
 				INFOPLIST_FILE = RASFloatingBall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chengpeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = tongyong13;
 			};
 			name = Release;
 		};
