@@ -11,6 +11,16 @@
 
 #pragma mark - RASFloatingBallWindow
 
+@interface RASFloatingBallViewController : UIViewController
+@property (assign,nonatomic) UIEdgeInsets edgeInsets;
+@end
+@implementation RASFloatingBallViewController
+-(void)viewSafeAreaInsetsDidChange{
+    self.edgeInsets = self.view.safeAreaInsets;
+}
+@end
+#pragma mark - RASFloatingBallWindow
+
 @interface RASFloatingBallWindow : UIWindow
 @end
 
@@ -169,7 +179,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     else {
         UIWindow *window = [[RASFloatingBallWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         window.windowLevel = CGFLOAT_MAX; //UIWindowLevelStatusBar - 1;
-        window.rootViewController = [UIViewController new];
+        window.rootViewController = [RASFloatingBallViewController new];
         window.rootViewController.view.backgroundColor = [UIColor clearColor];
         window.rootViewController.view.userInteractionEnabled = NO;
         [window makeKeyAndVisible];
@@ -186,6 +196,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
 }
 
 #pragma mark - Private Methods
+
 
 // 靠边
 - (void)autoCloseEdge {
@@ -208,6 +219,24 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     }];
 }
 
+- (void)handleSafeSpacing:(CGFloat)ballHalfH ballHalfW:(CGFloat)ballHalfW center:(CGPoint *)center parentViewH:(CGFloat)parentViewH parentViewW:(CGFloat)parentViewW vc:(RASFloatingBallViewController *)vc {
+    //        中间减去半径应该要小于left安全距离，中间x应该是左边安全距离加上半径
+    
+    if (center->x - ballHalfW < vc.edgeInsets.left) {
+        center->x = vc.edgeInsets.left + ballHalfW;
+    }
+    if (center->x + ballHalfW > parentViewW - vc.edgeInsets.right) {
+        center->x = parentViewW - vc.edgeInsets.right - ballHalfW;
+    }
+    
+    if (center->y - ballHalfH < vc.edgeInsets.top) {
+        center->y = vc.edgeInsets.top + ballHalfH;
+    }
+    if (center->y + ballHalfH > parentViewH - vc.edgeInsets.bottom) {
+        center->y =  parentViewH - vc.edgeInsets.bottom - ballHalfH;
+    }
+}
+
 - (CGPoint)calculatePoisitionWithEndOffset:(CGPoint)offset {
     if (self.autoCloseEdgeStartHandler) {
         self.autoCloseEdgeStartHandler(self);
@@ -217,13 +246,18 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     CGFloat parentViewW = self.parentView.bounds.size.width;
     CGFloat parentViewH = self.parentView.bounds.size.height;
     CGPoint center = self.center;
-    
+    UIWindow *window =  self.parentView;
+    RASFloatingBallViewController *vc = window.rootViewController;
+    NSLog(@"self.safeAreaInsets:%@",NSStringFromUIEdgeInsets(vc.edgeInsets));
     if (RASFloatingBallEdgePolicyLeftRight == self.edgePolicy) {
         // 左右
         center.x = (center.x < self.parentView.bounds.size.width * 0.5) ? (ballHalfW - offset.x + self.effectiveEdgeInsets.left) : (parentViewW + offset.x - ballHalfW + self.effectiveEdgeInsets.right);
         if (center.y < 0 || center.y > parentViewH) {
             center.y = (center.y < self.parentView.bounds.size.height * 0.5) ? (ballHalfH - offset.y + self.effectiveEdgeInsets.top) : (parentViewH + offset.y - ballHalfH + self.effectiveEdgeInsets.bottom);
         }
+        
+        
+        
     }
     else if (RASFloatingBallEdgePolicyUpDown == self.edgePolicy) {
         center.y = (center.y < self.parentView.bounds.size.height * 0.5) ? (ballHalfH - offset.y + self.effectiveEdgeInsets.top) : (parentViewH + offset.y - ballHalfH + self.effectiveEdgeInsets.bottom);
@@ -242,7 +276,7 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
             center.x = (center.x < self.parentView.bounds.size.width  * 0.5) ? (ballHalfW - offset.x + self.effectiveEdgeInsets.left) : (parentViewW + offset.x - ballHalfW + self.effectiveEdgeInsets.right);
         }
     }
-    
+    [self handleSafeSpacing:ballHalfH ballHalfW:ballHalfW center:&center parentViewH:parentViewH parentViewW:parentViewW vc:vc];
     return center;
 }
 
