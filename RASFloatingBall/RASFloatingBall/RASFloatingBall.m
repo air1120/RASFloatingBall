@@ -9,6 +9,51 @@
 #import "RASFloatingBall.h"
 #include <objc/runtime.h>
 
+@interface RASFloatingViewController : UIViewController
+@property(nonatomic,assign)UIInterfaceOrientationMask currentMask;
+@end
+
+@implementation RASFloatingViewController
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)currentMask {
+    if (!_currentMask) {
+        NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+        
+        NSArray *array = infoDic[@"UISupportedInterfaceOrientations"];
+        UIInterfaceOrientationMask mask = 0;
+        
+        for (NSString *temp in array) {
+            if ([temp isEqualToString:@"UIInterfaceOrientationLandscapeLeft"]) {
+                mask = mask | UIInterfaceOrientationMaskLandscapeLeft;
+            }
+            if ([temp isEqualToString:@"UIInterfaceOrientationLandscapeRight"]) {
+                mask = mask | UIInterfaceOrientationMaskLandscapeRight;
+            }
+            if ([temp isEqualToString:@"UIInterfaceOrientationPortrait"]) {
+                mask = mask | UIInterfaceOrientationMaskPortrait;
+            }
+            if ([temp isEqualToString:@"UIInterfaceOrientationPortraitUpsideDown"]) {
+                mask = mask | UIInterfaceOrientationMaskPortraitUpsideDown;
+            }
+        }
+        if ([array count] == 0) {
+            _currentMask = UIInterfaceOrientationMaskAll;
+        }else{
+            _currentMask = mask;
+        }
+    }
+    return _currentMask;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    UIInterfaceOrientationMask mask = self.currentMask;
+    return mask;
+}
+@end
+
 #pragma mark - RASFloatingBallWindow
 
 @interface RASFloatingBallWindow : UIWindow
@@ -41,6 +86,8 @@
     
     return NO;
 }
+
+
 @end
 
 #pragma mark - RASFloatingBallManager
@@ -169,9 +216,10 @@ static const NSInteger minUpDownLimits = 60 * 1.5f;   // RASFloatingBallEdgePoli
     else {
         UIWindow *window = [[RASFloatingBallWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         window.windowLevel = CGFLOAT_MAX; //UIWindowLevelStatusBar - 1;
-        window.rootViewController = [UIViewController new];
+        window.rootViewController = [RASFloatingViewController new];
         window.rootViewController.view.backgroundColor = [UIColor clearColor];
         window.rootViewController.view.userInteractionEnabled = NO;
+        
         [window makeKeyAndVisible];
         
         _parentView = window;
